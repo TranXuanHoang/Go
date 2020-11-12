@@ -2,7 +2,23 @@ import React, { Component } from 'react'
 import Person from './Person/Person'
 
 class Persons extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[Persons.js] shouldComponentUpdate')
+    return true
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[Persons.js] getSnapshotBeforeUpdate')
+    return { message: 'Snapshot!' }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('[Persons.js] componentDidUpdate')
+    console.log(snapshot)
+  }
+
   render() {
+    console.log('[Persons.js] Rendering')
     return this.props.persons.map((person, index) => {
       return <Person
         click={() => this.props.clicked(index)}
