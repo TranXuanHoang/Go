@@ -1,7 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from './Cockpit.css'
 
 const cockpit = (props) => {
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect')
+
+    const timer = setTimeout(() => {
+      window.alert('Persons data changed!')
+    }, 1000)
+
+    return () => {
+      clearTimeout(timer)
+      console.log('[Cockpit.js] cleanup work in useEffect')
+    }
+  }, []) // only run when the component is mounted for the first time and when being unmounted
+
+  useEffect(() => {
+    console.log('[Cockpit.js] 2nd useEffect')
+
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect')
+    }
+  }) // run every time component is rerendered (every rendering cycle)
+
+  useEffect(() => {
+    console.log('[Cockpit.js] 3rd useEffect')
+
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 3rd useEffect')
+    }
+  }, [props.persons]) // only run if props.persons was changed
+
   const assignedClasses = []
   let btnClass = ''
   if (props.showPersons) {
