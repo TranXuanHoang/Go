@@ -18,7 +18,8 @@ class App extends Component {
       { id: 'jfs90', name: 'Chris', age: 31 }
     ],
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -50,7 +51,12 @@ class App extends Component {
     const persons = [...this.state.persons]
     persons[personIndex] = person
 
-    this.setState({ persons })
+    this.setState((prevState, props) => {
+      return {
+        persons,
+        changeCounter: prevState.changeCounter + 1
+      }
+    })
   }
 
   deletePersonHandler = (personIndex) => {
@@ -60,8 +66,10 @@ class App extends Component {
   }
 
   togglePersonsHandler = () => {
-    this.setState({
-      showPersons: !this.state.showPersons
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !prevState.showPersons
+      }
     })
   }
 
@@ -79,7 +87,9 @@ class App extends Component {
     return (
       <Aux>
         <button onClick={() => {
-          this.setState({ showCockpit: !this.state.showCockpit })
+          this.setState((prevState, props) => {
+            return { showCockpit: !prevState.showCockpit }
+          })
         }}>
           Toggle Cockpit
         </button>
