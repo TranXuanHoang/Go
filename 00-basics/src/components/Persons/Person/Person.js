@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import withClass from '../../../hoc/withClass'
 import classes from './Person.css'
 
@@ -18,6 +19,15 @@ class Person extends Component {
       </Fragment>
     )
   }
+}
+
+// object.propTypes is an object that React will watch for in development mode
+// and gives warnings if passing incorrect props
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
 }
 
 export default withClass(Person, classes.Person)
