@@ -1,16 +1,15 @@
-import React, { useEffect, memo } from 'react'
+import React, { useEffect, memo, useRef } from 'react'
 import classes from './Cockpit.css'
 
 const cockpit = (props) => {
+  const toggleBtnRef = useRef(null)
+
   useEffect(() => {
     console.log('[Cockpit.js] useEffect')
 
-    const timer = setTimeout(() => {
-      window.alert('Persons data changed!')
-    }, 1000)
+    toggleBtnRef.current.click()
 
     return () => {
-      clearTimeout(timer)
       console.log('[Cockpit.js] cleanup work in useEffect')
     }
   }, []) // only run when the component is mounted for the first time and when being unmounted
@@ -48,7 +47,7 @@ const cockpit = (props) => {
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={assignedClasses.join(' ')}>Learning React...</p>
-      <button className={btnClass}
+      <button ref={toggleBtnRef} className={btnClass}
         onClick={props.clicked}>
         Toggle Persons
       </button>
