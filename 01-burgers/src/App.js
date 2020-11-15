@@ -1,7 +1,11 @@
+import Layout from './components/Layout/Layout'
+
 function App() {
   return (
-    <div className="App">
-      Burgers App
+    <div>
+      <Layout>
+        <p>Burgers App</p>
+      </Layout>
     </div>
   );
 }
