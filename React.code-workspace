@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "00-basics"
+		},
+		{
+			"path": "01-burgers"
 		}
 	],
 	"settings": {}
