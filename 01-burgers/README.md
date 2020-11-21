@@ -13,6 +13,7 @@ The app uses the following 3rd-party packages
 | [react-scripts](https://www.npmjs.com/package/react-scripts) | `production` | Includes scripts and configuration used by [Create React App](https://create-react-app.dev/) |
 | [web-vitals](https://www.npmjs.com/package/web-vitals) | `production` | a tiny (~1K), modular library for measuring all the [Web Vitals](https://web.dev/vitals/) metrics on real users, in a way that accurately matches how they're measured by Chrome and reported to other Google tools (e.g. Chrome User Experience Report, Page Speed Insights, Search Console's Speed Report) |
 | [prop-types](https://www.npmjs.com/package/prop-types) | `production` | Runtime type checking for React props |
+| [axios](https://www.npmjs.com/package/axios) | `production` | Send HTTP requests and handle their responses on web browsers |
 
 ## Source Code
 
