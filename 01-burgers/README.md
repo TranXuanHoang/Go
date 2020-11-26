@@ -25,6 +25,7 @@ Switch the source code to versions described below to view different implementat
 | [v1.0.0](https://github.com/TranXuanHoang/React/releases/tag/v1.0.0) | Create burgers web app (without making purchase order functionality) |
 | [v1.1.0](https://github.com/TranXuanHoang/React/releases/tag/v1.1.0) | Store purchase order data in and fetch ingredients data from a [Firebase realtime database](https://firebase.google.com/products/realtime-database) |
 | [v1.2.0](https://github.com/TranXuanHoang/React/releases/tag/v1.2.0) | Add routing to the app |
+| [v1.3.0](https://github.com/TranXuanHoang/React/releases/tag/v1.3.0) | Implement form validation |
 
 ## Run App
 
