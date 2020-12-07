@@ -15,6 +15,8 @@ The app uses the following 3rd-party packages
 | [prop-types](https://www.npmjs.com/package/prop-types) | `production` | Runtime type checking for React props |
 | [axios](https://www.npmjs.com/package/axios) | `production` | Send HTTP requests and handle their responses on web browsers |
 | [react-router-dom](https://www.npmjs.com/package/react-router-dom) | `production` | Provides navigational components for dynamically handling routes in React apps |
+| [redux](https://www.npmjs.com/package/redux) | `production` | Used in combination with `React` as a *predictable state container* for our app |
+| [react-redux](https://www.npmjs.com/package/react-redux) | `production` | React Redux is the official React binding for Redux. It lets React components read data from a Redux store, and dispatch actions to the store to update data. |
 
 ## Source Code
 
@@ -26,6 +28,7 @@ Switch the source code to versions described below to view different implementat
 | [v1.1.0](https://github.com/TranXuanHoang/React/releases/tag/v1.1.0) | Store purchase order data in and fetch ingredients data from a [Firebase realtime database](https://firebase.google.com/products/realtime-database) |
 | [v1.2.0](https://github.com/TranXuanHoang/React/releases/tag/v1.2.0) | Add routing to the app |
 | [v1.3.0](https://github.com/TranXuanHoang/React/releases/tag/v1.3.0) | Implement form validation |
+| [v1.4.0](https://github.com/TranXuanHoang/React/releases/tag/v1.4.0) | Manage app state with `Redux` |
 
 ## Run App
 
