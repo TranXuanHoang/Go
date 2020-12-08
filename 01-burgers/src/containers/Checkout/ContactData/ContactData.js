@@ -45,7 +45,8 @@ class ContactData extends Component {
         validation: {
           required: true,
           minLength: 5,
-          maxLength: 5
+          maxLength: 5,
+          isNumeric: true
         },
         valid: false,
         touched: false
@@ -71,7 +72,8 @@ class ContactData extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          isEmail: true
         },
         valid: false,
         touched: false
@@ -131,6 +133,14 @@ class ContactData extends Component {
     }
     if (rules.maxLength) {
       isValid = isValid && value.length <= rules.maxLength
+    }
+    if (rules.isEmail) {
+      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+      isValid = isValid && pattern.test(value)
+    }
+    if (rules.isNumeric) {
+      const pattern = /^\d+$/;
+      isValid = isValid && pattern.test(value)
     }
 
     return isValid
