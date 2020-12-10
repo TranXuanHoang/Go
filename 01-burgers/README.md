@@ -17,6 +17,7 @@ The app uses the following 3rd-party packages
 | [react-router-dom](https://www.npmjs.com/package/react-router-dom) | `production` | Provides navigational components for dynamically handling routes in React apps |
 | [redux](https://www.npmjs.com/package/redux) | `production` | Used in combination with `React` as a *predictable state container* for our app |
 | [react-redux](https://www.npmjs.com/package/react-redux) | `production` | React Redux is the official React binding for Redux. It lets React components read data from a Redux store, and dispatch actions to the store to update data. |
+| [redux-thunk](https://www.npmjs.com/package/redux-thunk) | `production` | A middleware used to handle async code while interacting with a `Redux store` - which means to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. |
 
 ## Source Code
 
