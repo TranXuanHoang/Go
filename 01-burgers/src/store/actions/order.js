@@ -22,10 +22,14 @@ export const purchaseBurgerStart = () => {
   }
 }
 
-export const purchaseBurger = (orderData) => {
+/**
+ * @param {object} orderData An object containing order information
+ * @param {string} token The authentication token used to authenticate any protected resources
+ */
+export const purchaseBurger = (orderData, token) => {
   return dispatch => {
     dispatch(purchaseBurgerStart())
-    axios.post('/orders.json', orderData)
+    axios.post(`/orders.json?auth=${token}`, orderData)
       .then(response => {
         dispatch(purchaseBurgerSuccess(response.data.name, orderData))
       })
@@ -60,10 +64,13 @@ export const fetchOrdersStart = () => {
   }
 }
 
-export const fetchOrders = () => {
+/**
+ * @param {string} token The authentication token used to authenticate any protected resources
+ */
+export const fetchOrders = (token) => {
   return dispatch => {
     dispatch(fetchOrdersStart())
-    axios.get('/orders.json')
+    axios.get(`/orders.json?auth=${token}`)
       .then(res => {
         const fetchedOrders = []
         for (let key in res.data) {
