@@ -67,10 +67,22 @@ export const fetchOrdersStart = () => {
 /**
  * @param {string} token The authentication token used to authenticate any protected resources
  */
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
   return dispatch => {
     dispatch(fetchOrdersStart())
-    axios.get(`/orders.json?auth=${token}`)
+    // Note that to orderBy userId, need to set Firebase DB's rules ".indexOn": "userId"
+    // e.g.
+    // {
+    //   "rules": {
+    //     ...
+    //     "orders": {
+    //       ...
+    //       ".indexOn": ["userId"]
+    //     }
+    //   }
+    // }
+    const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`
+    axios.get(`/orders.json${queryParams}`)
       .then(res => {
         const fetchedOrders = []
         for (let key in res.data) {
