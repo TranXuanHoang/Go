@@ -30,6 +30,7 @@ Switch the source code to versions described below to view different implementat
 | [v1.2.0](https://github.com/TranXuanHoang/React/releases/tag/v1.2.0) | Add routing to the app |
 | [v1.3.0](https://github.com/TranXuanHoang/React/releases/tag/v1.3.0) | Implement form validation |
 | [v1.4.0](https://github.com/TranXuanHoang/React/releases/tag/v1.4.0) | Manage app state with `Redux` |
+| [v1.5.0](https://github.com/TranXuanHoang/React/releases/tag/v1.5.0) | Add authentication |
 
 ## Run App
 

@@ -5,6 +5,7 @@ import Button from '../../../components/UI/Button/Button'
 import Input from '../../../components/UI/Input/Input'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+import { checkValidity } from '../../../shared/utility'
 import * as actions from '../../../store/actions/index'
 import classes from './ContactData.module.css'
 
@@ -114,33 +115,6 @@ class ContactData extends Component {
     this.props.onOrderBurger(order, this.props.token)
   }
 
-  checkValidity(value, rules) {
-    if (!rules) {
-      return true
-    }
-
-    let isValid = true
-    if (rules.required) {
-      isValid = isValid && value.trim() !== ''
-    }
-    if (rules.minLength) {
-      isValid = isValid && value.length >= rules.minLength
-    }
-    if (rules.maxLength) {
-      isValid = isValid && value.length <= rules.maxLength
-    }
-    if (rules.isEmail) {
-      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-      isValid = isValid && pattern.test(value)
-    }
-    if (rules.isNumeric) {
-      const pattern = /^\d+$/;
-      isValid = isValid && pattern.test(value)
-    }
-
-    return isValid
-  }
-
   inputChangedHandler = (event, inputIdentifier) => {
     const updatedOrderForm = {
       ...this.state.orderForm
@@ -148,9 +122,9 @@ class ContactData extends Component {
     const updatedFormElement = {
       ...updatedOrderForm[inputIdentifier],
       value: event.target.value,
+      valid: checkValidity(event.target.value, updatedOrderForm[inputIdentifier].validation),
       touched: true
     }
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
     updatedOrderForm[inputIdentifier] = updatedFormElement
 
     let formIsValid = true
