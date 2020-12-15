@@ -12,7 +12,9 @@ import burgerBuilderReducer from './store/reducers/burgerBuilder';
 import orderReducer from './store/reducers/order';
 
 // See https://github.com/zalmoxisus/redux-devtools-extension#12-advanced-store-setup
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// Redux Devtools will be available only in 'development' environment
+const composeEnhancers = process.env.NODE_ENV === 'development'
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose
 
 const rootReducer = combineReducers({
   burgerBuilder: burgerBuilderReducer,
