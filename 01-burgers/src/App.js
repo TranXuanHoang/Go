@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 // import Auth from './containers/Auth/Auth';
@@ -14,7 +14,7 @@ const Logout = lazy(() => import('./containers/Auth/Logout/Logout'))
 const Checkout = lazy(() => import('./containers/Checkout/Checkout'))
 const Orders = lazy(() => import('./containers/Orders/Orders'))
 
-class App extends Component {
+export class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignup()
   }

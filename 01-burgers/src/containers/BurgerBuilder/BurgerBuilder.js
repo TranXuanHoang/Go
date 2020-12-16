@@ -9,7 +9,8 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import * as actions from '../../store/actions/index'
 
-class BurgerBuilder extends Component {
+// Use the 'export' keyword here to export this BurgerBuilder component for unit testing
+export class BurgerBuilder extends Component {
   state = {
     purchasing: false
   }
