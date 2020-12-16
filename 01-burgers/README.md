@@ -34,7 +34,7 @@ Switch the source code to versions described below to view different implementat
 | [v1.3.0](https://github.com/TranXuanHoang/React/releases/tag/v1.3.0) | Implement form validation |
 | [v1.4.0](https://github.com/TranXuanHoang/React/releases/tag/v1.4.0) | Manage app state with `Redux` |
 | [v1.5.0](https://github.com/TranXuanHoang/React/releases/tag/v1.5.0) | Add authentication |
-| [v1.6.0](https://github.com/TranXuanHoang/React/releases/tag/v1.6.0) | Add lazy loading and unit tests |
+| [v1.6.0](https://github.com/TranXuanHoang/React/releases/tag/v1.6.0) | Add lazy loading, unit tests and deploy app to [Firebase Hosting](https://firebase.google.com/docs/hosting) |
 
 ## Run App
 
@@ -55,3 +55,39 @@ npm test
 | [NavigationItems.test.js](./src/components/Navigation/NavigationItems/NavigationItems.test.js) | Demonstrate how to write a test suite with a set of test cases for a `React` component |
 | [BurgerBuilder.test.js](./src/containers/BurgerBuilder/BurgerBuilder.test.js) | Example of how to test containers |
 | [auth.test.js](./src/store/reducers/auth.test.js) | Show how to test a `Redux reducer` |
+
+## Deploy App
+
+See the [deployment instructions](https://create-react-app.dev/docs/deployment/) for single-page React apps created with [Create React App](https://create-react-app.dev/). To buid the source code and generate production-ready code, run
+
+```shell
+npm run build
+```
+
+### Deploy App to Firebase
+
+* **Install Firebase CLI:** To host the site with Firebase Hosting, we need the Firebase CLI. Run the following npm command to install the CLI or update to the latest CLI version
+
+  ```shell
+  # Add sudo at the beginning if run it on a Mac
+  npm install -g firebase-tools
+  ```
+
+* **Initialize your project:** Open a terminal window and navigate to or create a root directory for your web app
+
+  ```shell
+  # Sign in to Google
+  firebase login
+
+  # Initiate Firebase project by runing this command from the app’s root directory
+  firebase init
+
+  # Let Firebase CLI know that we want to use the burger project
+  firebase use --add
+  ```
+
+* **Deploy to Firebase Hosting:** Run this command from the app’s root directory
+
+  ```shell
+  firebase deploy
+  ```
