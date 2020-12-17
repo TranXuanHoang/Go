@@ -10,6 +10,8 @@ The app uses the following 3rd-party packages
 
 | Package | Type | Purpose |
 |---------|------|---------|
+| [webpack](https://www.npmjs.com/package/webpack) | `dev` | To bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. |
+| [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) | `dev` | Use `Webpack` with a development server that provides live reloading |
 
 ## Source Code
 
