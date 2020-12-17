@@ -43,5 +43,15 @@ module.exports = {
   // In order to make it easier to track down errors and warnings,
   // specify a source maps option so that webpack generate source map files
   // which map compiled code back to the original source code.
-  devtool: 'eval-cheap-module-source-map'
+  devtool: 'eval-cheap-module-source-map',
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: [/node_modules/]
+      }
+    ]
+  }
 }
