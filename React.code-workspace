@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "01-burgers"
+		},
+		{
+			"path": "02-build-workflow"
 		}
 	],
 	"settings": {}
