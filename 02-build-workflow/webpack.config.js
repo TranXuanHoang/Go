@@ -4,6 +4,7 @@
  */
 
 const path = require('path')
+const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -22,7 +23,7 @@ module.exports = {
     contentBase: './dist',
   },
 
-  // Customize the webpack build process
+  // Customizes the webpack build process
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -45,12 +46,43 @@ module.exports = {
   // which map compiled code back to the original source code.
   devtool: 'eval-cheap-module-source-map',
 
+  // Determines how the different types of modules within a project will be treated.
   module: {
+    // An array of Rules which are matched to requests when modules are created.
+    // These rules can modify how the module is created.
+    // They can apply loaders to the module, or modify the parser.
     rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: [/node_modules/]
+      },
+      {
+        test: /\.css$/i,
+        exclude: [/node_modules/],
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              // 0 => no loaders (default);
+              // 1 => postcss-loader;
+              // 2 => postcss-loader, sass-loader
+              modules: {
+                localIdentName: '[name]__[local]__[hash:base64:5]'
+              }
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [autoprefixer()]
+              }
+            }
+          }
+        ]
       }
     ]
   }
