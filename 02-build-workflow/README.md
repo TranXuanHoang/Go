@@ -4,7 +4,7 @@
 [![JavaScript Compiler](https://img.shields.io/badge/-Babel-2b3a42?style=flat&logo=Babel)](https://babeljs.io/)
 [![CSS Preprocessor](https://img.shields.io/badge/-PostCSS-DD3A0A?style=flat&logo=PostCSS)](https://postcss.org/)
 
-This project demonstrate how to config [Webpack](https://webpack.js.org/) to build and bundle source code.
+This project demonstrates how to manually config [Webpack](https://webpack.js.org/) to build and bundle source code.
 
 ## 3rd-Party Packages
 
@@ -76,12 +76,13 @@ This configuration was successfully tested with `webpack v5.10.3`, `webpack-cli 
   {
     "browserslist": "> 1%, last 2 versions",
     "scripts": {
-      "start": "webpack serve --open chrome"
+      "start": "webpack serve --open chrome",
+      "build": "webpack --config webpack.config.prod.js"
     }
   }
   ```
 
-* Create a [`webpack.config.js`](./webpack.config.js) file for development environment. This config file will be used by the `npm start` script.
+* Create a [`webpack.config.js`](./webpack.config.js) file for `development` environment. This config file will be used by the `npm start` script.
 
   ```javascript
   const path = require('path')
@@ -183,3 +184,5 @@ This configuration was successfully tested with `webpack v5.10.3`, `webpack-cli 
     }
   }
   ```
+
+* Create a [`webpack.config.prod.js`](./webpack.config.prod.js) file for `production` environment. This config file will be used by the `npm run build` script.

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --open chrome"
+    "start": "webpack serve --open chrome",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "author": "",
   "license": "ISC",
