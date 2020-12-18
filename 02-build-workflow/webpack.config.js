@@ -27,7 +27,9 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Development',
+      template: path.resolve(__dirname, 'src/index.html'),
+      filename: 'index.html',
+      inject: 'body'
     }),
   ],
 
@@ -78,8 +80,20 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: () => [autoprefixer()]
+                plugins: [autoprefixer]
               }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'images/[name].[ext]'
             }
           }
         ]
