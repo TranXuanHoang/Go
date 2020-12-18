@@ -2,6 +2,7 @@
 
 [![Build Tool](https://img.shields.io/badge/-Webpack-2b3a42?style=flat&logo=Webpack)](https://webpack.js.org/)
 [![JavaScript Compiler](https://img.shields.io/badge/-Babel-2b3a42?style=flat&logo=Babel)](https://babeljs.io/)
+[![CSS Preprocessor](https://img.shields.io/badge/-PostCSS-DD3A0A?style=flat&logo=PostCSS)](https://postcss.org/)
 
 This project demonstrate how to config [Webpack](https://webpack.js.org/) to build and bundle source code.
 
@@ -22,9 +23,12 @@ The app uses the following 3rd-party packages
 | [@babel/core](https://www.npmjs.com/package/@babel/core) | `dev` | [`Homepage`](https://babeljs.io/docs/en/babel-core) |
 | [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env) | `dev` | [`Homepage`](https://babeljs.io/docs/en/babel-preset-env) |
 | [@babel/preset-react](https://www.npmjs.com/package/@babel/preset-react) | `dev` | [`Homepage`](https://babeljs.io/docs/en/babel-preset-react) |
-| []() | `dev` | [`Homepage`]() |
 | [babel-loader](https://www.npmjs.com/package/babel-loader) | `dev` | Allows transpiling JavaScript files using [Babel](https://babeljs.io/) and webpack |
 | [@babel/plugin-proposal-class-properties](https://www.npmjs.com/package/@babel/plugin-proposal-class-properties) | `dev` | [`Homepage`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties.html) |
+| [style-loader](https://www.npmjs.com/package/style-loader) | `dev` | Injects CSS into the DOM |
+| [css-loader](https://www.npmjs.com/package/css-loader) | `dev` | Interprets `CSS` @import and url() like import/require() and will resolve them |
+| [postcss-loader](https://www.npmjs.com/package/postcss-loader) | `dev` | [`Homepage`](https://postcss.org/) A tool for transforming CSS. For example, adding vendor prefixes to CSS rules using values from Can I Use. |
+| [autoprefixer](https://www.npmjs.com/package/autoprefixer) | `dev` | [PostCSS](https://postcss.org/) plugin to parse CSS and add vendor prefixes to CSS rules using values from [Can I Use](https://caniuse.com/) |
 
 ## Source Code
 
@@ -50,7 +54,15 @@ This configuration was successfully tested with `webpack v5.10.3`, `webpack-cli 
 
   # Also install additional dependencies
   npm i -D clean-webpack-plugin html-webpack-plugin
+
+  # Plugins to transpile JavaScript and JSX code
   npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader @babel/plugin-proposal-class-properties
+
+  # Loaders to interpret CSS rules and inject them into the DOM
+  npm i -D style-loader css-loader
+
+  # Preprocess CSS with PostCSS (e.g. prefixing CSS rules)
+  npm i -D postcss-loader autoprefixer
   ```
 
 * Specify npm build scripts
