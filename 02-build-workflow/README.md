@@ -4,7 +4,7 @@
 [![JavaScript Compiler](https://img.shields.io/badge/-Babel-2b3a42?style=flat&logo=Babel)](https://babeljs.io/)
 [![CSS Preprocessor](https://img.shields.io/badge/-PostCSS-DD3A0A?style=flat&logo=PostCSS)](https://postcss.org/)
 
-This project demonstrates how to manually config [Webpack](https://webpack.js.org/) to build and bundle source code.
+This project demonstrates how to manually config [Webpack](https://webpack.js.org/) to build and bundle `React` source code.
 
 ## 3rd-Party Packages
 
@@ -31,6 +31,8 @@ The app uses the following 3rd-party packages
 | [autoprefixer](https://www.npmjs.com/package/autoprefixer) | `dev` | [PostCSS](https://postcss.org/) plugin to parse CSS and add vendor prefixes to CSS rules using values from [Can I Use](https://caniuse.com/) |
 | [file-loader](https://www.npmjs.com/package/file-loader) | `dev` | A loader that resolves `import`/`require()` on a file into a url and emits the file into the output directory |
 | [url-loader](https://www.npmjs.com/package/url-loader) | `dev` | A loader for webpack which transforms files into base64 URIs |
+| [core-js](https://www.npmjs.com/package/core-js) | `production` | Includes polyfills for ECMAScript up to 2021: `promises`, `symbols`, `collections`, `iterators`, `typed arrays`, many other features |
+| [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) | `production` | Standalone runtime for [Regenerator](https://github.com/facebook/regenerator)-compiled generator and `async` functions |
 
 ## Source Code
 
@@ -54,7 +56,7 @@ This configuration was successfully tested with `webpack v5.10.3`, `webpack-cli 
   ```powershell
   npm i -D webpack webpack-cli webpack-dev-server
 
-  # Also install additional dependencies
+  # Also install additional plugin dependencies
   npm i -D clean-webpack-plugin html-webpack-plugin
 
   # Plugins to transpile JavaScript and JSX code
@@ -68,6 +70,9 @@ This configuration was successfully tested with `webpack v5.10.3`, `webpack-cli 
 
   # Load assets files (e.g., images)
   npm i -D file-loader url-loader
+
+  # Add Polyfill so that can use new built-ins like Promise or Object.assign
+  npm i --save core-js regenerator-runtime
   ```
 
 * Specify supported browsers list and npm build scripts
@@ -186,3 +191,28 @@ This configuration was successfully tested with `webpack v5.10.3`, `webpack-cli 
   ```
 
 * Create a [`webpack.config.prod.js`](./webpack.config.prod.js) file for `production` environment. This config file will be used by the `npm run build` script.
+
+* Define `Babel` config file [.babelrc](./.babelrc). The `"useBuiltIns": "usage"` specifies `polyfill` support which is brought by [`core-js`](https://www.npmjs.com/package/core-js) and [`regenerator-runtime`](https://www.npmjs.com/package/regenerator-runtime).
+
+  ```json
+  {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "browsers": [
+              "> 1%",
+              "last 2 versions"
+            ]
+          },
+          "useBuiltIns": "usage"
+        }
+      ],
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  }
+  ```
