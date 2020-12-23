@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { delay, put } from 'redux-saga/effects'
+import { delay, put, call } from 'redux-saga/effects'
 import * as actions from '../actions/index'
 
 // For more information about Firebase Auth REST API,
@@ -13,9 +13,16 @@ const GOOGLE_API_KEY = 'AIzaSyDgsUotZEJIHSUnv26Vcv9gslbpbxXeiNw'
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
  */
 export function* logoutSaga(action) {
-  yield localStorage.removeItem('token')
-  yield localStorage.removeItem('expirationDate')
-  yield localStorage.removeItem('userId')
+  // yield localStorage.removeItem('token')
+  // yield localStorage.removeItem('expirationDate')
+  // yield localStorage.removeItem('userId')
+
+  // Another way of implementing the above commented code
+  // This notation is considered as easier to test with mocks
+  yield call([localStorage, 'removeItem'], 'token')
+  yield call([localStorage, 'removeItem'], 'expirationDate')
+  yield call([localStorage, 'removeItem'], 'userId')
+
   yield put(actions.logoutSucceed())
 }
 
