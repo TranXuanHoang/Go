@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "02-build-workflow"
+		},
+		{
+			"path": "03-ingredients"
 		}
 	],
 	"settings": {}
