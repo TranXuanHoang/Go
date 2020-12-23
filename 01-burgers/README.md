@@ -27,15 +27,16 @@ The app uses the following 3rd-party packages
 
 Switch the source code to versions described below to view different implementations.
 
-| Git Tag | Implementation |
-|---------|----------------|
-| [v1.0.0](https://github.com/TranXuanHoang/React/releases/tag/v1.0.0) | Create burgers web app (without making purchase order functionality) |
-| [v1.1.0](https://github.com/TranXuanHoang/React/releases/tag/v1.1.0) | Store purchase order data in and fetch ingredients data from a [Firebase realtime database](https://firebase.google.com/products/realtime-database) |
-| [v1.2.0](https://github.com/TranXuanHoang/React/releases/tag/v1.2.0) | Add routing to the app |
-| [v1.3.0](https://github.com/TranXuanHoang/React/releases/tag/v1.3.0) | Implement form validation |
-| [v1.4.0](https://github.com/TranXuanHoang/React/releases/tag/v1.4.0) | Manage app state with `Redux` |
-| [v1.5.0](https://github.com/TranXuanHoang/React/releases/tag/v1.5.0) | Add authentication |
-| [v1.6.0](https://github.com/TranXuanHoang/React/releases/tag/v1.6.0) | Add lazy loading, unit tests and deploy app to [Firebase Hosting](https://firebase.google.com/docs/hosting) |
+| Git Tag | Git Diff | Implementation |
+|---------|----------|----------------|
+| [v1.0.0](https://github.com/TranXuanHoang/React/releases/tag/v1.0.0) | [diff](https://github.com/TranXuanHoang/React/compare/v0.0.0...v1.0.0) | Create burgers web app (without making purchase order functionality) |
+| [v1.1.0](https://github.com/TranXuanHoang/React/releases/tag/v1.1.0) | [diff](https://github.com/TranXuanHoang/React/compare/v1.0.0...v1.1.0) | Store purchase order data in and fetch ingredients data from a [Firebase realtime database](https://firebase.google.com/products/realtime-database) |
+| [v1.2.0](https://github.com/TranXuanHoang/React/releases/tag/v1.2.0) | [diff](https://github.com/TranXuanHoang/React/compare/v1.1.0...v1.2.0) | Add routing to the app |
+| [v1.3.0](https://github.com/TranXuanHoang/React/releases/tag/v1.3.0) | [diff](https://github.com/TranXuanHoang/React/compare/v1.2.0...v1.3.0) | Implement form validation |
+| [v1.4.0](https://github.com/TranXuanHoang/React/releases/tag/v1.4.0) | [diff](https://github.com/TranXuanHoang/React/compare/v1.3.0...v1.4.0) | Manage app state with `Redux` |
+| [v1.5.0](https://github.com/TranXuanHoang/React/releases/tag/v1.5.0) | [diff](https://github.com/TranXuanHoang/React/compare/v1.4.0...v1.5.0) | Add authentication |
+| [v1.6.0](https://github.com/TranXuanHoang/React/releases/tag/v1.6.0) | [diff](https://github.com/TranXuanHoang/React/compare/v1.5.0...v1.6.0) | Add lazy loading, unit tests and deploy app to [Firebase Hosting](https://firebase.google.com/docs/hosting) |
+| [v1.7.0](https://github.com/TranXuanHoang/React/releases/tag/v1.7.0) | [diff](https://github.com/TranXuanHoang/React/compare/v2.0.0...v1.7.0) | Handle side effects (e.g., async code) with [Redux Saga](https://redux-saga.js.org/) |
 
 ## Run App
 

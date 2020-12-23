@@ -11,7 +11,7 @@ import reportWebVitals from './reportWebVitals';
 import authReducer from './store/reducers/auth';
 import burgerBuilderReducer from './store/reducers/burgerBuilder';
 import orderReducer from './store/reducers/order';
-import { watchAuth, watchBurgerBuilder } from './store/sagas/index';
+import { watchAuth, watchBurgerBuilder, watchOrder } from './store/sagas/index';
 
 // See https://github.com/zalmoxisus/redux-devtools-extension#12-advanced-store-setup
 // Redux Devtools will be available only in 'development' environment
@@ -33,6 +33,7 @@ const store = createStore(
 
 sagaMiddleware.run(watchAuth)
 sagaMiddleware.run(watchBurgerBuilder)
+sagaMiddleware.run(watchOrder)
 
 ReactDOM.render(
   <React.StrictMode>
