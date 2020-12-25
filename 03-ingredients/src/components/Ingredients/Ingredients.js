@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import IngredientForm from "./IngredientForm";
 import IngredientList from './IngredientList';
 import Search from "./Search";
@@ -7,6 +7,9 @@ const FIREBASE_REALTIME_DB = 'https://react-ingredients-3feb6-default-rtdb.fireb
 
 const Ingredients = () => {
   const [userIngredients, setUserIngredients] = useState([])
+  const filterIngredientsHandler = useCallback(filteredIngredients => {
+    setUserIngredients(filteredIngredients)
+  }, [])
 
   const addIngredientHandler = ingredient => {
     fetch(`${FIREBASE_REALTIME_DB}ingredients.json`, {
@@ -34,7 +37,7 @@ const Ingredients = () => {
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
-        <Search />
+        <Search onLoadIngredients={filterIngredientsHandler} />
         <IngredientList ingredients={userIngredients} onRemoveItem={removeIngredientHandler} />
       </section>
     </div>
