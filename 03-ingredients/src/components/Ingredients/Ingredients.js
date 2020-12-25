@@ -7,11 +7,14 @@ const FIREBASE_REALTIME_DB = 'https://react-ingredients-3feb6-default-rtdb.fireb
 
 const Ingredients = () => {
   const [userIngredients, setUserIngredients] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+
   const filterIngredientsHandler = useCallback(filteredIngredients => {
     setUserIngredients(filteredIngredients)
   }, [])
 
   const addIngredientHandler = ingredient => {
+    setIsLoading(true)
     fetch(`${FIREBASE_REALTIME_DB}ingredients.json`, {
       method: 'POST',
       body: JSON.stringify(ingredient),
@@ -19,7 +22,10 @@ const Ingredients = () => {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        setIsLoading(false)
+        return response.json()
+      })
       .then(responseData => {
         setUserIngredients(prevIngredients => [
           ...prevIngredients,
@@ -29,12 +35,19 @@ const Ingredients = () => {
   }
 
   const removeIngredientHandler = id => {
-    setUserIngredients(prevIngredients => prevIngredients.filter(ig => ig.id !== id))
+    setIsLoading(true)
+    fetch(`${FIREBASE_REALTIME_DB}ingredients/${id}.json`, {
+      method: 'DELETE'
+    })
+      .then(response => {
+        setIsLoading(false)
+        setUserIngredients(prevIngredients => prevIngredients.filter(ig => ig.id !== id))
+      })
   }
 
   return (
     <div className="App">
-      <IngredientForm onAddIngredient={addIngredientHandler} />
+      <IngredientForm onAddIngredient={addIngredientHandler} loading={isLoading} />
 
       <section>
         <Search onLoadIngredients={filterIngredientsHandler} />
