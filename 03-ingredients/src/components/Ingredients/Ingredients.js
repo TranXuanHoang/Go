@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useMemo, useReducer } from "react";
 import ErrorModal from '../UI/ErrorModal';
 import IngredientForm from "./IngredientForm";
 import IngredientList from './IngredientList';
@@ -46,7 +46,7 @@ const Ingredients = () => {
     dispatch({ type: 'SET', ingredients: filteredIngredients })
   }, [])
 
-  const addIngredientHandler = ingredient => {
+  const addIngredientHandler = useCallback(ingredient => {
     // setIsLoading(true)
     dispatchHttp({ type: 'SEND' })
     fetch(`${FIREBASE_REALTIME_DB}ingredients.jsons`, {
@@ -76,9 +76,9 @@ const Ingredients = () => {
         // setIsLoading(false)
         dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' })
       })
-  }
+  }, [])
 
-  const removeIngredientHandler = id => {
+  const removeIngredientHandler = useCallback(id => {
     // setIsLoading(true)
     dispatchHttp({ type: 'SEND' })
     fetch(`${FIREBASE_REALTIME_DB}ingredients/${id}.jsons`, {
@@ -95,12 +95,24 @@ const Ingredients = () => {
         // setIsLoading(false)
         dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' })
       })
-  }
+  }, [])
 
-  const clearError = () => {
+  const clearError = useCallback(() => {
     // setError(null)
     dispatchHttp({ type: 'CLEAR' })
-  }
+  }, [])
+
+  // Call useMemo to avoid re-render of IngredientList.
+  // 'removeIngredientHandler' is created with useCallback, so it
+  // will not change, and therefore 'ingredientList' will only be
+  // re-rendered when 'userIngredients' changes.
+  const ingredientList = useMemo(() => {
+    return (
+      <IngredientList
+        ingredients={userIngredients}
+        onRemoveItem={removeIngredientHandler} />
+    )
+  }, [userIngredients, removeIngredientHandler])
 
   return (
     <div className="App">
@@ -109,7 +121,7 @@ const Ingredients = () => {
 
       <section>
         <Search onLoadIngredients={filterIngredientsHandler} />
-        <IngredientList ingredients={userIngredients} onRemoveItem={removeIngredientHandler} />
+        {ingredientList}
       </section>
     </div>
   );
