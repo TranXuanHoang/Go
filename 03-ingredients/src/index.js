@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import AuthContextProvider from './context/auth-context';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+// Wrap the App with AuthContextProvider so that every component
+// in the app can receive authentication context data provided by
+// the AuthContextProvider
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
