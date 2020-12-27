@@ -14,7 +14,8 @@ const Logout = lazy(() => import('./containers/Auth/Logout/Logout'))
 const Checkout = lazy(() => import('./containers/Checkout/Checkout'))
 const Orders = lazy(() => import('./containers/Orders/Orders'))
 
-const App = props => {
+// Use the 'export' keyword here to export this App component for unit testing
+export const App = props => {
   useEffect(() => {
     props.onTryAutoSignup()
   }, [props])
