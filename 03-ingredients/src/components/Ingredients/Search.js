@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import useHttp from '../../hooks/http';
 import Card from "../UI/Card";
+import ErrorModal from '../UI/ErrorModal';
 import "./Search.css";
 
 const FIREBASE_REALTIME_DB = 'https://react-ingredients-3feb6-default-rtdb.firebaseio.com/'
@@ -8,6 +10,8 @@ const Search = React.memo(props => {
   const { onLoadIngredients } = props
   const [enteredFilter, setEnteredFilter] = useState('')
   const inputRef = useRef()
+
+  const { isLoading, error, data, sendRequest, clear } = useHttp()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,24 +31,10 @@ const Search = React.memo(props => {
           ? ''
           : `?orderBy="title"&equalTo="${enteredFilter}"`
 
-        fetch(`${FIREBASE_REALTIME_DB}ingredients.json${query}`, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-          .then(response => response.json())
-          .then(responseData => {
-            console.log(responseData)
-            const loadedIngredients = []
-            for (let key in responseData) {
-              loadedIngredients.push({
-                id: key,
-                ...responseData[key]
-              })
-            }
-            console.log(loadedIngredients)
-            onLoadIngredients(loadedIngredients)
-          })
+        sendRequest(
+          `${FIREBASE_REALTIME_DB}ingredients.json${query}`,
+          'GET'
+        )
       }
     }, 500) // setTimeout for 500ms to avoid sending requests to the backend server for every keystroke user entered
 
@@ -53,13 +43,35 @@ const Search = React.memo(props => {
     return () => {
       clearTimeout(timer)
     }
-  }, [enteredFilter, onLoadIngredients, inputRef]) // Only rerun useEffect if any elements in the array were changed
+  }, [enteredFilter, inputRef, sendRequest]) // Only rerun useEffect if any elements in the array were changed
+
+  // Handle responses of HTTP requests
+  useEffect(() => {
+    // Only run the logic when the HTTP request has been reponded successfully
+    // which means not in loading status and no error
+    if (isLoading || error || !data) {
+      return
+    }
+
+    console.log(data)
+    const loadedIngredients = []
+    for (let key in data) {
+      loadedIngredients.push({
+        id: key,
+        ...data[key]
+      })
+    }
+    console.log(loadedIngredients)
+    onLoadIngredients(loadedIngredients)
+  }, [data, isLoading, error, onLoadIngredients])
 
   return (
     <section className="search">
+      {error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
       <Card>
         <div className="search-input">
           <label>Filter by Title</label>
+          {isLoading && <span>Loading...</span>}
           <input type="text"
             ref={inputRef}
             value={enteredFilter}

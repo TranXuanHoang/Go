@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo, useReducer } from "react";
+import React, { useCallback, useEffect, useMemo, useReducer } from "react";
+import useHttp from '../../hooks/http';
 import ErrorModal from '../UI/ErrorModal';
 import IngredientForm from "./IngredientForm";
 import IngredientList from './IngredientList';
@@ -19,27 +20,37 @@ const ingredientReducer = (currentIngredients, action) => {
   }
 }
 
-const httpReducer = (curHttpState, action) => {
-  switch (action.type) {
-    case 'SEND':
-      return { loading: true, error: null }
-    case 'RESPONSE':
-      return { ...curHttpState, loading: false }
-    case 'ERROR':
-      return { loading: false, error: action.errorMessage }
-    case 'CLEAR':
-      return { ...curHttpState, error: null }
-    default:
-      throw new Error('Should not be reached!')
-  }
-}
-
 const Ingredients = () => {
   // const [userIngredients, setUserIngredients] = useState([])
   // const [isLoading, setIsLoading] = useState(false)
   // const [error, setError] = useState()
   const [userIngredients, dispatch] = useReducer(ingredientReducer, [])
-  const [httpState, dispatchHttp] = useReducer(httpReducer, { loading: false, error: null })
+
+  // Call custom hook useHttp
+  const { isLoading, error, data, sendRequest, reqExtra, reqIdentifier, clear } = useHttp()
+
+  // Handle responses of HTTP requests
+  useEffect(() => {
+    // Only run the logic when the HTTP request has been reponded successfully
+    // which means not in loading status and no error
+    if (isLoading || error) {
+      return
+    }
+
+    switch (reqIdentifier) {
+      case 'REMOVE_INGREDIENT':
+        dispatch({ type: 'DELETE', id: reqExtra })
+        break
+      case 'ADD_INGREDIENT':
+        dispatch({
+          type: 'ADD',
+          ingredient: { id: data.name, ...reqExtra }
+        })
+        break
+      default:
+        break
+    }
+  }, [data, reqExtra, reqIdentifier, isLoading, error])
 
   const filterIngredientsHandler = useCallback(filteredIngredients => {
     // setUserIngredients(filteredIngredients)
@@ -48,59 +59,24 @@ const Ingredients = () => {
 
   const addIngredientHandler = useCallback(ingredient => {
     // setIsLoading(true)
-    dispatchHttp({ type: 'SEND' })
-    fetch(`${FIREBASE_REALTIME_DB}ingredients.jsons`, {
-      method: 'POST',
-      body: JSON.stringify(ingredient),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        // setIsLoading(false)
-        dispatchHttp({ type: 'RESPONSE' })
-        return response.json()
-      })
-      .then(responseData => {
-        // setUserIngredients(prevIngredients => [
-        //   ...prevIngredients,
-        //   { id: responseData.name, ...ingredient }
-        // ])
-        dispatch({
-          type: 'ADD',
-          ingredient: { id: responseData.name, ...ingredient }
-        })
-      })
-      .catch(error => {
-        // setError('Something went wrong!')
-        // setIsLoading(false)
-        dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' })
-      })
-  }, [])
+    sendRequest(`${FIREBASE_REALTIME_DB}ingredients.json`,
+      'POST',
+      JSON.stringify(ingredient),
+      ingredient,
+      'ADD_INGREDIENT'
+    )
+  }, [sendRequest])
 
   const removeIngredientHandler = useCallback(id => {
     // setIsLoading(true)
-    dispatchHttp({ type: 'SEND' })
-    fetch(`${FIREBASE_REALTIME_DB}ingredients/${id}.jsons`, {
-      method: 'DELETE'
-    })
-      .then(response => {
-        // setIsLoading(false)
-        // setUserIngredients(prevIngredients => prevIngredients.filter(ig => ig.id !== id))
-        dispatchHttp({ type: 'RESPONSE' })
-        dispatch({ type: 'DELETE', id: id })
-      })
-      .catch(error => {
-        // setError('Something went wrong!')
-        // setIsLoading(false)
-        dispatchHttp({ type: 'ERROR', errorMessage: 'Something went wrong!' })
-      })
-  }, [])
-
-  const clearError = useCallback(() => {
-    // setError(null)
-    dispatchHttp({ type: 'CLEAR' })
-  }, [])
+    sendRequest(
+      `${FIREBASE_REALTIME_DB}ingredients/${id}.json`,
+      'DELETE',
+      null,
+      id,
+      'REMOVE_INGREDIENT'
+    )
+  }, [sendRequest])
 
   // Call useMemo to avoid re-render of IngredientList.
   // 'removeIngredientHandler' is created with useCallback, so it
@@ -116,8 +92,8 @@ const Ingredients = () => {
 
   return (
     <div className="App">
-      {httpState.error && <ErrorModal onClose={clearError}>{httpState.error}</ErrorModal>}
-      <IngredientForm onAddIngredient={addIngredientHandler} loading={httpState.loading} />
+      {error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
+      <IngredientForm onAddIngredient={addIngredientHandler} loading={isLoading} />
 
       <section>
         <Search onLoadIngredients={filterIngredientsHandler} />
