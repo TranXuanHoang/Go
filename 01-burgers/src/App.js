@@ -16,9 +16,10 @@ const Orders = lazy(() => import('./containers/Orders/Orders'))
 
 // Use the 'export' keyword here to export this App component for unit testing
 export const App = props => {
+  const { onTryAutoSignup } = props
   useEffect(() => {
-    props.onTryAutoSignup()
-  }, [props])
+    onTryAutoSignup()
+  }, [onTryAutoSignup])
 
   let routes = (
     <Switch>
