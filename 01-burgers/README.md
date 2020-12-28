@@ -37,6 +37,7 @@ Switch the source code to versions described below to view different implementat
 | [v1.5.0](https://github.com/TranXuanHoang/React/releases/tag/v1.5.0) | [diff](https://github.com/TranXuanHoang/React/compare/v1.4.0...v1.5.0) | Add authentication |
 | [v1.6.0](https://github.com/TranXuanHoang/React/releases/tag/v1.6.0) | [diff](https://github.com/TranXuanHoang/React/compare/v1.5.0...v1.6.0) | Add lazy loading, unit tests and deploy app to [Firebase Hosting](https://firebase.google.com/docs/hosting) |
 | [v1.7.0](https://github.com/TranXuanHoang/React/releases/tag/v1.7.0) | [diff](https://github.com/TranXuanHoang/React/compare/v2.0.0...v1.7.0) | Handle side effects (e.g., async code) with [Redux Saga](https://redux-saga.js.org/) |
+| [v1.8.0](https://github.com/TranXuanHoang/React/releases/tag/v1.8.0) | [diff](https://github.com/TranXuanHoang/React/compare/v3.0.0...v1.8.0) | Convert all class-based components to functional components with [React Hooks](https://reactjs.org/docs/hooks-intro.html)] |
 
 ## Run App
 
