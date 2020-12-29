@@ -11,3 +11,4 @@ This repository includes a set of projects building `single page` web apps with 
 | [01-burgers](./01-burgers) | Builds an example burgers ordering web app | `high order component` `route` `axios` `redux` `redux thunk` `redux saga` `unit test` |
 | [02-build-workflow](./02-build-workflow) | Shows how to config Webpack build workflows | `webpack` |
 | [03-ingredients](./03-ingredients) | Creates an example app that manages state of functional components using `React Hooks` | `React hooks` |
+| [04-favorite-products](./04-favorite-products) | Example of how to replace `Redux` with `React Hooks` | `context API` `custom hooks` |
