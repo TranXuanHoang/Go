@@ -13,6 +13,9 @@ const Navigation = props => {
           <li>
             <NavLink to="/favorites">Favorites</NavLink>
           </li>
+          <li>
+            <NavLink to="/counter">Counter</NavLink>
+          </li>
         </ul>
       </nav>
     </header>

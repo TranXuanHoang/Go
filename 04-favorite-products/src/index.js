@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import configureCounterStore from './hooks-store/counter-store';
 import configureProductsStore from './hooks-store/products-store';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 configureProductsStore()
+configureCounterStore()
 
 ReactDOM.render(
   <BrowserRouter>
