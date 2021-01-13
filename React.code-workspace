@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "04-favorite-products"
+		},
+		{
+			"path": "05-ecommerce"
 		}
 	],
 	"settings": {}
