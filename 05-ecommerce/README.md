@@ -16,5 +16,6 @@ Switch the source code to versions described below to view different implementat
 
 The ecommerce application in this project is broken down into 3 components
 
-* a container with source code in the [container](./container) directory
-* a product list whose source code is placed in the [products](./products) directory
+* a `container` with source code in the [container](./container) directory
+* a `product list` whose source code is placed in the [products](./products) directory
+* a `shopping cart` whose source code is in the [cart](./cart) directory
