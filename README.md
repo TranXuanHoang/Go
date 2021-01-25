@@ -13,3 +13,4 @@ This repository includes a set of projects building `single page` web apps with 
 | [03-ingredients](./03-ingredients) | Creates an example app that manages state of functional components using `React Hooks` | `React hooks` |
 | [04-favorite-products](./04-favorite-products) | Example of how to replace `Redux` with `React Hooks` | `context API` `custom hooks` |
 | [05-ecommerce](./05-ecommerce) | Works on how to create scallable apps with a microfrontend architecture | `microfrontend` |
+| [06-mfp](./06-mfp) | Builds a scallable web app using microfrontend architecture | `microfrontend` |

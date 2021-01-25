@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "05-ecommerce"
+		},
+		{
+			"path": "06-mfp"
 		}
 	],
 	"settings": {}
