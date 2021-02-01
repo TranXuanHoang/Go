@@ -12,12 +12,15 @@ import App from './App'
  * its route according to the route of this child `marketing` microfrontend.
  * - `defaultHistory` that is a `MemoryHistory` route object used a default router
  * setting while running this `marketing` microfrontend in development mode.
+ * - `initialPath` the initial route path when mounting this child `marketing` microfrontend.
  * @return {object} an object contains `onParentNavigate()` function
  * that is passed up to the `container` to listen for route changing event there
  * and update the in-memory route of the this child `marketing` microfrontend.
  */
-const mount = (el, { onNavigate, defaultHistory }) => {
-  const history = defaultHistory || createMemoryHistory()
+const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+  const history = defaultHistory || createMemoryHistory({
+    initialEntries: [initialPath]
+  })
 
   if (onNavigate) {
     // Listen to route changing event of the marketing microfrontend
