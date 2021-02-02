@@ -8,6 +8,7 @@ import App from './App'
  * @param {HTMLElement} el the HTML DOM element to which this `auth`
  * microfrontend is rendered.
  * @param {object} object containing
+ * - `onSignIn` function that is called whenever sign-in is made.
  * - `onNavigate()` function that is passed down from the `container` to change
  * its route according to the route of this child `auth` microfrontend.
  * - `defaultHistory` that is a `MemoryHistory` route object used a default router
@@ -17,7 +18,7 @@ import App from './App'
  * that is passed up to the `container` to listen for route changing event there
  * and update the in-memory route of the this child `auth` microfrontend.
  */
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (el, { onSignIn, onNavigate, defaultHistory, initialPath }) => {
   const history = defaultHistory || createMemoryHistory({
     initialEntries: [initialPath]
   })
@@ -29,7 +30,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     history.listen(onNavigate)
   }
 
-  ReactDOM.render(<App history={history} />, el)
+  ReactDOM.render(<App onSignIn={onSignIn} history={history} />, el)
 
   return {
     onParentNavigate({ pathname: nextPathname }) {
