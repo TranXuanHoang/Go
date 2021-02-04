@@ -1,0 +1,71 @@
+.SearchForm {
+  background: linear-gradient(to bottom right, #f1816d, #ebab57);
+  display: flex;
+  justify-content: center;
+  gap: 2rem 2.5rem;
+  flex-wrap: wrap;
+  padding: 2rem 5rem;
+  border-radius: 1rem;
+  max-width: 70vh;
+}
+
+.SearchForm input {
+  max-width: 80%;
+  border: none;
+  border-radius: 2px;
+  padding: 0.5rem 1rem;
+  color: grey;
+  font-size: 1.2rem;
+  transition: all 0.3s ease-in;
+}
+
+.SearchForm input:focus {
+  outline: none;
+  text-decoration: none;
+  transform: scaleX(1.1);
+}
+
+.SearchForm button {
+  font-size: 1.2rem;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: darkmagenta;
+  color: white;
+  transition: all 0.2s ease-out;
+}
+
+.SearchForm button:hover,
+.SearchForm button:focus,
+.SearchForm button:active {
+  outline: none;
+  cursor: pointer;
+  background-color: #a705a7;
+  box-shadow: 0 0.5rem 1rem #fabc6c;
+  transform: scale(1.01);
+}
+
+.Error {
+  color: red;
+  font-size: 1.2rem;
+}
+
+.Loading {
+  color: gray;
+  font-size: 1.2rem;
+}
+
+.PackageInfo {
+  margin-top: 0.5rem;
+  padding: 0.2rem 1rem;
+  background-color: beige;
+  max-width: 70vh;
+  border-radius: 2px;
+  transition: all 0.3s ease-out;
+}
+
+.PackageInfo:hover {
+  transform: scale(1.01);
+  background: linear-gradient(to bottom right, #f1816d, #ebab57);
+  cursor: pointer;
+}
