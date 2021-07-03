@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "07-node-packages"
+		},
+		{
+			"path": "08-testing"
 		}
 	],
 	"settings": {}

@@ -15,3 +15,4 @@ This repository includes a set of projects building `single page` web apps with 
 | [05-ecommerce](./05-ecommerce) | Works on how to create scallable apps with a microfrontend architecture | `microfrontend` |
 | [06-mfp](./06-mfp) | Builds a scallable web app using microfrontend architecture | `microfrontend` |
 | [07-node-packages](./07-node-packages) | Shows how to write a React app using TypeScript and Redux | `TypeScript` `Redux` |
+| [08-testing](./08-testing) | Demonstrates automated testing in `React` apps | `Jest` `Enzyme` |
